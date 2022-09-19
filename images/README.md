@@ -1,6 +1,6 @@
 ## Images
 
-The directory images/ should contain the images that are used by the clock.
+The directory `images/` should contain the images that are used by the clock.
 The following images are required:
 
 **Animated Background Mode**

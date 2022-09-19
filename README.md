@@ -1,3 +1,4 @@
+![Screenshot 1](images/Screenshot1.png)
 # pygame_clock
 **_pygame_clock_ is a simple clock that features an animated background.**
 
@@ -10,7 +11,7 @@ background.
 
 ## Configure
 
-The configuration is done via the config/pygame_clock.json file.
+The configuration is done via the `config/pygame_clock.json` file.
 The following options are supported:
 
 Option              | Default     | Description
@@ -43,18 +44,18 @@ snowflake_speed     | 1           | Snowflake falling speed in pixels/update whe
 Pygame for python3 >= 1.9 and pyowm >= 3.0
 ## Images
 
-The directory images/ should contain the images that are used by the clock.
+The directory `images/` should contain the images that are used by the clock.
 The following images are required:
 
 **Animated Background Mode**
 Filename       | Recommended size | Description
 ---------------|------------------|------------
-sun.png        | 100x100          | Sun
-moon.png       | 100x100          | Moon
-cloud_day.png  | 100x60           | Cloud during day
-cloud_night.png| 100x60           | Cloud during night
-raindrop.png   | 25x50            | Single rain drop
-snowflake.png  | 50x50            | Single snowflake
+sun.png        | 100x100          | Sun (included in the repo)
+moon.png       | 100x100          | Moon (included in the repo)
+cloud_day.png  | 100x60           | Cloud during day (included in the repo)
+cloud_night.png| 100x60           | Cloud during night (included in the repo)
+raindrop.png   | 25x50            | Single rain drop (included in the repo)
+snowflake.png  | 50x50            | Single snowflake (included in the repo)
 
 **Photo Mode**
 Filename            | Description
