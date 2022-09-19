@@ -36,4 +36,5 @@ storm_day.png       | Storm during day
 storm_night.png     | Storm during night
 tornado_day.png     | Tornado during day
 tornado_night.png   | Tornado during night
-_It is recommended that the size of the image matches the resolution of your screen_
+
+_It is recommended that the size of the images in photo mode matches the resolution of your screen_
