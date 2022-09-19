@@ -9,6 +9,10 @@ It can be used fullscreen (the default) or windowed. You can choose between two
 possible modes of display: Show photos according to weather or show an animated
 background.
 
+When using it in animated-background mode, it creates clouds, rain, and 
+snow using sprites. The sun and moon go up and down depending of the hour 
+of the day and the sky changes its color depending if it is day or night.
+
 ## Configure
 
 The configuration is done via the `config/pygame_clock.json` file.
