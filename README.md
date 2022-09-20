@@ -1,4 +1,5 @@
 ![Screenshot 1](images/Screenshot1.png)
+![Screenshot 2](images/Screenshot2.png)
 # pygame_clock
 **_pygame_clock_ is a simple clock that features an animated background.**
 
@@ -26,9 +27,9 @@ screen_width        | 800         | Width of screen when windowed
 screen_height       | 480         | Height of screen when windowed
 bg_color            |[0,0,0]      | Background color when in photo mode. This is visible only when no photo exists.
 clock_font          |quicksand    | Font used for displaying text
-time_face_percent   |45           | Percentage of screen used by the time
-date_face_percent   |10           | Percentage of screen used by date
-weather_face_percent|8            | Percentage of screen used by weather
+time_face_percent   |45           | Percentage of screen used by the time text
+date_face_percent   |10           | Percentage of screen used by date text
+weather_face_percent|8            | Percentage of screen used by weather text
 day_text_color      |[0,0,0]      | Text color using during day
 night_text_color    |[255,255,255]| Text color using during night
 time_format         | %H:%M:%S    | Time format in [strftime](https://strftime.org/) format
