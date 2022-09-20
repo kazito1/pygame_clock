@@ -55,8 +55,8 @@ class Moon:
 
     def update(self):
         """Move the moon to a new position"""
-        new_moon_position = self.get_moon_position(self.pclock.current_time)
-        if (self.pclock.current_time > self.pclock.sunrise_time):
+        if (self.pclock.current_time > self.pclock.sunset_time
+                and self.pclock.sunset_time > self.pclock.sunrise_time):
             # The sunrise time has not been updated yet
             # Since we don't know the exact sunrise time until it gets updated
             # we are going to approximate it based in the previous day
@@ -64,9 +64,11 @@ class Moon:
             self.sunrise_time = self.pclock.sunrise_time + 86400
             self.halfnight_time = int( self.sunset_time
                 + ( self.sunrise_time - self.sunset_time )/2 )
-        elif (new_moon_position < self.screen.get_rect().height + 1
-                and self.pclock.current_time < self.pclock.sunrise_time):
-            # Do not update sunset time, moon is still out
+        elif (self.pclock.current_time < self.pclock.sunrise_time
+                and self.pclock.current_time < self.pclock.sunset_time):
+            # Both sunset and sunrise have been updated, 
+            # but we are still on night
+            self.sunset_time = self.pclock.sunset_time - 86400
             self.sunrise_time = self.pclock.sunrise_time
             self.halfnight_time = int( self.sunset_time
                 + ( self.sunrise_time - self.sunset_time )/2 )
@@ -78,6 +80,7 @@ class Moon:
             self.sunset_time = self.pclock.sunset_time
             self.halfnight_time = int( self.sunset_time
                 + ( self.sunrise_time + 86400 - self.sunset_time )/2 )
+        new_moon_position = self.get_moon_position(self.pclock.current_time)
         self.rect.y = new_moon_position
 
     def blitme(self):
