@@ -14,7 +14,7 @@ When using it in animated-background mode, it creates clouds, rain, and
 snow using sprites. The sun and moon go up and down depending of the hour 
 of the day and the sky changes its color depending if it is day or night.
 
-## Configure
+## Configuration
 
 The configuration is done via the `config/pygame_clock.json` file.
 The following options are supported:
@@ -96,3 +96,5 @@ Start the clock by running pygame_clock.py:
 ```shell
 $ ./pygame_clock.py
 ```
+
+To exit from the clock, press the Esc key or the q key.
