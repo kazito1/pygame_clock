@@ -76,7 +76,13 @@ class ClockFace:
                 self.pclock.settings.temperature_units)['temp'])
         location = f"{self.pclock.location.city}, {self.pclock.location.region}"
         weather_status = f"{self.pclock.weather.weather.detailed_status}"
-        weather_str = f"{temperature}° at {location}. {weather_status.capitalize()}"
+        if (self.pclock.settings.temperature_units == 'celsius'):
+            symbol_str = '°C'
+        elif (self.pclock.settings.temperature_units == 'fahrenheit'):
+            symbol_str = '°F'
+        else:
+            symbol_str = 'K'
+        weather_str = f"{temperature}{symbol_str} at {location}. {weather_status.capitalize()}"
         self.weather_image = self.font.render(weather_str, True, 
             text_color)
         self.weather_rect = self.weather_image.get_rect()
