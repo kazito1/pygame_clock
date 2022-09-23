@@ -34,7 +34,7 @@ day_text_color      |[0,0,0]      | Text color using during day
 night_text_color    |[255,255,255]| Text color using during night
 time_format         | %H:%M:%S    | Time format in [strftime](https://strftime.org/) format
 date_format         | %A, %B %d   | Date format in [strftime](https://strftime.org/) format
-temperature_units   | celsius     | Temperature units. Can be chosen between _celsius_ and _fahrenheit_
+temperature_units   | celsius     | Temperature units. Can be chosen between _celsius_, _fahrenheit_ or _kelvin_
 api_key             | xxxxxxxxxxx | OpenWeather API Key
 queries_per_minute  | 2           | Times to query the OpenWeather API per minute
 day_color           |[135,206,235]| Color of the sky during day when using animated background
@@ -92,7 +92,7 @@ _It is recommended that the size of the images in photo mode matches the resolut
 
 Before the first use, get a free openweather API key at [OpenWeather](https://openweathermap.org/)
 
-Start the clock by running pygame_clock.py:
+Start the clock by running `pygame_clock.py`:
 ```shell
 $ ./pygame_clock.py
 ```
