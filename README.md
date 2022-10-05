@@ -17,9 +17,23 @@ of the day and the sky changes its color depending if it is day or night.
 ## Configuration
 
 The configuration is done via the `config/pygame_clock.json` file.
-The following options are supported:
 
-Option              | Default     | Description
+The default settings were originally tested with [Raspberry Pi 4 Model B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)
+running [Raspbian](https://www.raspberrypi.com/software/); however, it can be run on all the platforms that support
+[pygame](https://www.pygame.org/) >= 1.9 and [pyowm](https://pyowm.readthedocs.io/) >= 3.0.
+
+All the settings are optional; however, it is recommended to have a configuration
+file with at least your `api_key` setting, as the default provided key does not work:
+
+```json
+{
+  "api_key": "Your OpenWeather API key"
+}
+```
+
+The following settings are supported:
+
+Setting             | Default     | Description
 --------------------|-------------|------------
 fullscreen          | 1           | Sets the mode between fullscreen (1) or windowed (0)
 use_photos          | 0           | Choose between using photos to show the weather (1) or an animated background (0)
@@ -46,7 +60,7 @@ snowflake_speed     | 1           | Snowflake falling speed in pixels/update whe
 
 ## Requirements
 
-Pygame for python3 >= 1.9 and pyowm >= 3.0
+[pygame](https://www.pygame.org/) for python3 >= 1.9 and [pyowm](https://pyowm.readthedocs.io/) >= 3.0
 ## Images
 
 The directory `images/` should contain the images that are used by the clock.
@@ -86,11 +100,13 @@ storm_night.png     | Storm during night
 tornado_day.png     | Tornado during day
 tornado_night.png   | Tornado during night
 
-_It is recommended that the size of the images in photo mode matches the resolution of your screen_
+_It is recommended that the size of the images in photo mode matches the resolution_
+_of your screen_
 
 ## Usage
 
 Before the first use, get a free openweather API key at [OpenWeather](https://openweathermap.org/)
+and add it to the configuration file `config/pygame_clock.json`
 
 Start the clock by running `pygame_clock.py`:
 ```shell
