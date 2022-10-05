@@ -19,8 +19,8 @@ of the day and the sky changes its color depending if it is day or night.
 The configuration is done via the `config/pygame_clock.json` file.
 
 The default settings were originally tested with [Raspberry Pi 4 Model B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)
-running [Raspbian](https://www.raspberrypi.com/software/); however, it can be run on all the platforms that support
-[pygame](https://www.pygame.org/) >= 1.9 and [pyowm](https://pyowm.readthedocs.io/) >= 3.0.
+running [Raspbian](https://www.raspberrypi.com/software/); however, pygame_clock can be run on all the platforms that support
+[pygame](https://www.pygame.org/) >= 1.9 and [pyowm](https://pyowm.readthedocs.io/) >= 3.0 with the provided settings.
 
 All the settings are optional; however, it is recommended to have a configuration
 file with at least your `api_key` setting, as the default provided key does not work:
@@ -77,6 +77,7 @@ raindrop.png   | 25x50            | Single rain drop (included in the repo)
 snowflake.png  | 50x50            | Single snowflake (included in the repo)
 
 **Photo Mode**
+_NOTE: None of these files are provided with the repo_
 Filename            | Description
 --------------------|------------------------
 clear_day.png       | Clear sky during day
