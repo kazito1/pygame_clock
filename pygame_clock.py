@@ -220,7 +220,7 @@ class PyGameClock:
         aux_clouds = self.clouds.copy()
         for cloud in aux_clouds:
             if (cloud.cloud_finished_travel()):
-                self.clouds.remove(cloud)
+                cloud.kill()
         self.clouds.update()
 
     def _get_percent_visible_of_cloud(self,cloud):
@@ -339,7 +339,7 @@ class PyGameClock:
         aux_rainy_weather = self.rainy_weather.copy()
         for raindrop in aux_rainy_weather:
             if (raindrop.drop_finished_falling()):
-                self.rainy_weather.remove(raindrop)
+                raindrop.kill()
         self.rainy_weather.update()
 
     def _create_snowflake_row(self):
@@ -387,7 +387,7 @@ class PyGameClock:
         aux_snowy_weather = self.snowy_weather.copy()
         for snowflake in aux_snowy_weather:
             if (snowflake.snowflake_finished_falling()):
-                self.snowy_weather.remove(snowflake)
+                snowflake.kill()
         self.snowy_weather.update()
 
 
