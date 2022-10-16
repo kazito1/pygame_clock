@@ -48,6 +48,7 @@ class PyGameClock:
         self.bg_color = self.settings.bg_color
 
         # Initialize animated background objects
+        self._initialize_raindrop_snowflake_width()
         self.current_time = self.clock_face.current_time
         self.sunrise_time = self.weather.weather.sunrise_time()
         self.sunset_time = self.weather.weather.sunset_time()
@@ -262,6 +263,15 @@ class PyGameClock:
         cloud = Cloud(self)
         self.clouds.add(cloud)
 
+    def _initialize_raindrop_snowflake_width(self):
+        """Initializes the width of a raindrop and a snowflake"""
+        raindrop = RainDrop(self)
+        self.raindrop_width = raindrop.rect.width
+        raindrop.kill()
+        snowflake = SnowFlake(self)
+        self.snowflake_width = snowflake.rect.width
+        snowflake.kill()
+
     def _raindrop_spacing(self):
         """
         Calculates the space between each one of the drops based on the
@@ -294,11 +304,9 @@ class PyGameClock:
     def _create_raindrop_row(self):
         """Creates a row of rain drops"""
         if (self.rain and self._last_raindrop_row_is_on_screen()):
-            raindrop = RainDrop(self)
-            raindrop_width, raindrop_height = raindrop.rect.size
             number_raindrops_x = (self.settings.screen_width 
-                // ( ( self._raindrop_spacing() * raindrop_width ) 
-                + raindrop_width ) )
+                // ( ( self._raindrop_spacing() * self.raindrop_width ) 
+                + self.raindrop_width ) )
             # Create the row of drops
             for raindrop_number in range(int(number_raindrops_x)):
                 self._create_raindrop(raindrop_number)
@@ -319,11 +327,10 @@ class PyGameClock:
     def _create_raindrop(self, raindrop_number):
         """Creates a single raindrop"""
         raindrop = RainDrop(self)
-        raindrop_width, raindrop_height = raindrop.rect.size
-        first_spacing = ( raindrop_width * self._raindrop_spacing()
+        first_spacing = ( self.raindrop_width * self._raindrop_spacing()
             * self.raindrop_snow_odd_even )
-        raindrop.x = (first_spacing + raindrop_number * (raindrop_width 
-            + raindrop_width*self._raindrop_spacing()))
+        raindrop.x = (first_spacing + raindrop_number * (self.raindrop_width 
+            + self.raindrop_width*self._raindrop_spacing()))
         raindrop.y = -raindrop.rect.height
         raindrop.rect.x = raindrop.x
         raindrop.rect.y = raindrop.y
@@ -345,10 +352,8 @@ class PyGameClock:
     def _create_snowflake_row(self):
         """Creates a row of snowflakes"""
         if (self.snow and self._last_snowflakes_row_is_on_screen()):
-            snowflake = SnowFlake(self)
-            snowflake_width, snowflake_height = snowflake.rect.size
             number_snowflakes_x = (self.settings.screen_width 
-                // (snowflake_width*2))
+                // (self.snowflake_width*2))
             # Create the row of snowflakes
             for snowflake_number in range(int(number_snowflakes_x)):
                 self._create_snowflake(snowflake_number)
@@ -369,9 +374,9 @@ class PyGameClock:
     def _create_snowflake(self, snowflake_number):
         """Creates a single snowflake"""
         snowflake = SnowFlake(self)
-        snowflake_width, snowflake_height = snowflake.rect.size
-        first_spacing = ( snowflake_width * self.raindrop_snow_odd_even )
-        snowflake.x = (first_spacing + snowflake_number * 2 * snowflake_width)
+        first_spacing = ( self.snowflake_width * self.raindrop_snow_odd_even )
+        snowflake.x = (first_spacing + snowflake_number * 2 
+            * self.snowflake_width)
         snowflake.y = -snowflake.rect.height
         snowflake.rect.x = snowflake.x
         snowflake.rect.y = snowflake.y
