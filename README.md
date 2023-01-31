@@ -57,6 +57,8 @@ cloud_speed         |0.1          | Cloud speed in pixels/update when using anim
 minimum_percent_of_last_cloud|5   | Minumum percent shown of the last cloud created before creating a new cloud when using animated background
 raindrop_speed      | 3           | Raindrop falling speed in pixels/update when using animated background. Adjust the value according to your system.
 snowflake_speed     | 1           | Snowflake falling speed in pixels/update when using animated background. Adjust the value according to your system.
+latitude            |             | If provided, will force the latitude for clock's location
+longitude           |             | If provided, will force the longitude for clock's location
 
 ## Requirements
 

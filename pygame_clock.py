@@ -22,7 +22,7 @@ class PyGameClock:
         pygame.init()
 
         self.settings = Settings()
-        self.location = MyLocation()
+        self.location = MyLocation(self)
         self.latitude = self.location.lat
         self.longitude = self.location.long
         self.weather = WeatherAtLocation(self)

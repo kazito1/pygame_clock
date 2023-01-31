@@ -19,6 +19,6 @@
   "night_color": [12,20,69],
   "cloud_speed": 0.1,
   "minimum_percent_of_last_cloud": 5,
-  "raindrop_speed": 3,
+  "raindrop_speed": 15,
   "snowflake_speed": 1
 }
