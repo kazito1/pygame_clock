@@ -61,6 +61,10 @@ class Settings:
             self.raindrop_speed = all_settings["raindrop_speed"]
         if('snowflake_speed' in all_settings):
             self.snowflake_speed = all_settings["snowflake_speed"]
+        if('latitude' in all_settings):
+            self.latitude = all_settings["latitude"]
+        if('longitude' in all_settings):
+            self.longitude = all_settings["longitude"]
 
         # Make sure we are not exceeding 100 percent of screen with the
         # size of the data shown on screen and if so, 
@@ -85,7 +89,7 @@ class Settings:
         self.minimum_percent_of_last_cloud = 10
 
         # Rain settings
-        self.raindrop_speed = 3
+        self.raindrop_speed = 15
 
         # Snowflake settings
         self.snowflake_speed = 3
