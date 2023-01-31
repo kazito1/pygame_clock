@@ -4,7 +4,8 @@
 **_pygame_clock_ is a simple clock that features an animated background.**
 
 pygame_clock shows the weather by querying [OpenWeather](https://openweathermap.org/).
-It gets the location where it is running via IP by querying [ipinfo.io](https://ipinfo.io/)
+By default, it gets the location where it is running via IP by querying [ipinfo.io](https://ipinfo.io/).
+However, you can provide in the configuration the latitude and longitude of the desired location (See below).
 
 It can be used fullscreen (the default) or windowed. You can choose between two
 possible modes of display: Show photos according to weather or show an animated
@@ -62,7 +63,8 @@ longitude           |             | If provided, will force the longitude for cl
 
 ## Requirements
 
-[pygame](https://www.pygame.org/) for python3 >= 1.9 and [pyowm](https://pyowm.readthedocs.io/) >= 3.0
+[pygame](https://www.pygame.org/) for python3 >= 1.9, [pyowm](https://pyowm.readthedocs.io/) >= 3.0,
+and [GeoPy](https://geopy.readthedocs.io/en/stable/) >= 2.3.0
 ## Images
 
 The directory `images/` should contain the images that are used by the clock.
