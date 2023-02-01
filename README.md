@@ -5,11 +5,12 @@
 
 pygame_clock shows the weather by querying [OpenWeather](https://openweathermap.org/).
 By default, it gets the location where it is running via IP by querying [ipinfo.io](https://ipinfo.io/).
-However, you can provide in the configuration the latitude and longitude of the desired location (See below).
+However, you can provide in the configuration file the latitude and longitude
+of the desired location (See below).
 
 It can be used fullscreen (the default) or windowed. You can choose between two
-possible modes of display: Show photos according to weather or show an animated
-background.
+possible display modes: Show photos according to the weather or show an animated
+background (the default).
 
 When using it in animated-background mode, it creates clouds, rain, and 
 snow using sprites. The sun and moon go up and down depending of the hour 
@@ -21,7 +22,8 @@ The configuration is done via the `config/pygame_clock.json` file.
 
 The default settings were originally tested with [Raspberry Pi 4 Model B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)
 running [Raspbian](https://www.raspberrypi.com/software/); however, pygame_clock can be run on all the platforms that support
-[pygame](https://www.pygame.org/) >= 1.9 and [pyowm](https://pyowm.readthedocs.io/) >= 3.0 with the provided settings.
+[pygame](https://www.pygame.org/) >= 1.9, [pyowm](https://pyowm.readthedocs.io/) >= 3.0,
+and [GeoPy](https://geopy.readthedocs.io/en/stable/) >= 2.1.0 with the provided settings.
 
 All the settings are optional; however, it is recommended to have a configuration
 file with at least your `api_key` setting, as the default provided key does not work:
@@ -56,7 +58,7 @@ day_color           |[135,206,235]| Color of the sky during day when using anima
 night_color         |[12,20,69]   | Color of the sky during night when using animated background
 cloud_speed         |0.1          | Cloud speed in pixels/update when using animated background. Adjust the value according to your system.
 minimum_percent_of_last_cloud|5   | Minumum percent shown of the last cloud created before creating a new cloud when using animated background
-raindrop_speed      | 3           | Raindrop falling speed in pixels/update when using animated background. Adjust the value according to your system.
+raindrop_speed      | 15          | Raindrop falling speed in pixels/update when using animated background. Adjust the value according to your system.
 snowflake_speed     | 1           | Snowflake falling speed in pixels/update when using animated background. Adjust the value according to your system.
 latitude            |             | If provided, will force the latitude for clock's location
 longitude           |             | If provided, will force the longitude for clock's location
@@ -64,7 +66,7 @@ longitude           |             | If provided, will force the longitude for cl
 ## Requirements
 
 [pygame](https://www.pygame.org/) for python3 >= 1.9, [pyowm](https://pyowm.readthedocs.io/) >= 3.0,
-and [GeoPy](https://geopy.readthedocs.io/en/stable/) >= 2.3.0
+and [GeoPy](https://geopy.readthedocs.io/en/stable/) >= 2.1.0
 ## Images
 
 The directory `images/` should contain the images that are used by the clock.
@@ -110,7 +112,7 @@ _of your screen_
 
 ## Usage
 
-Before the first use, get a free openweather API key at [OpenWeather](https://openweathermap.org/)
+Before the first use, get a free openweather API key at [OpenWeather](https://home.openweathermap.org/users/sign_up)
 and add it to the configuration file `config/pygame_clock.json`
 
 Start the clock by running `pygame_clock.py`:
@@ -118,4 +120,4 @@ Start the clock by running `pygame_clock.py`:
 $ ./pygame_clock.py
 ```
 
-To exit from the clock, press the Esc key or the q key.
+To exit from the clock, press the `Esc` key or the `q` key.
