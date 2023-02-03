@@ -283,19 +283,19 @@ class PyGameClock:
         # Greater than 8 mm per hour.
         spacing = 0
         if (self.rain):
-            if (self.rain['1h'] < 0.5):
+            if (float(self.rain['1h']) < 0.5):
                 # slight rain
                 spacing = 2
                 pass
-            elif (self.rain['1h'] >= 0.5 and self.rain['1h'] < 4):
+            elif (float(self.rain['1h']) >= 0.5 and float(self.rain['1h']) < 4):
                 # moderate rain
                 spacing = 1.5
                 pass
-            elif (self.rain['1h'] >= 4 and self.rain['1h'] < 8):
+            elif (float(self.rain['1h']) >= 4 and float(self.rain['1h']) < 8):
                 # heavy rain
                 spacing = 1
                 pass
-            elif (self.rain['1h'] >= 8):
+            elif (float(self.rain['1h']) >= 8):
                 # very heavy rain
                 spacing = 0.5
                 pass
