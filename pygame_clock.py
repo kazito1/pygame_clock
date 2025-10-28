@@ -39,7 +39,11 @@ class PyGameClock:
         pygame.display.set_caption("PyGame Clock")
 
         # Get weather for the first time
-        self.weather.get_current_weather()
+        try:
+            self.weather.get_current_weather()
+        except Exception as e:
+            print(f"Initial weather fetch failed: {e}")
+            print("Clock will continue with default values")
 
         # Create an instance of the clock face
         self.clock_face = ClockFace(self)
@@ -50,9 +54,28 @@ class PyGameClock:
         # Initialize animated background objects
         self._initialize_raindrop_snowflake_width()
         self.current_time = self.clock_face.current_time
-        self.sunrise_time = self.weather.weather.sunrise_time()
-        self.sunset_time = self.weather.weather.sunset_time()
-        self.cloud_percent = self.weather.weather.clouds
+        try:
+            self.sunrise_time = self.weather.weather.sunrise_time()
+            self.sunset_time = self.weather.weather.sunset_time()
+            self.cloud_percent = self.weather.weather.clouds
+        except (AttributeError, TypeError):
+            # Use default values if weather data is unavailable
+            import datetime
+            self.sunrise_time = datetime.time(6, 0)  # Default 6 AM
+            self.sunset_time = datetime.time(18, 0)  # Default 6 PM
+            self.cloud_percent = 0
+            print("Using default sunrise/sunset times due to weather data unavailability")
+        
+        # Initialize rain and snow with safe defaults
+        try:
+            self.rain = self.weather.weather.rain
+        except (AttributeError, KeyError):
+            self.rain = None
+        try:
+            self.snow = self.weather.weather.snow
+        except (AttributeError, KeyError):
+            self.snow = None
+            
         self.sun = Sun(self)
         self.moon = Moon(self)
         self.sky = Sky(self)
@@ -79,11 +102,21 @@ class PyGameClock:
             self.clock_face.prep_face()
             self._query_weather()
             self.current_time = self.clock_face.current_time
-            self.sunrise_time = self.weather.weather.sunrise_time()
-            self.sunset_time = self.weather.weather.sunset_time()
-            self.cloud_percent = self.weather.weather.clouds
-            self.rain = self.weather.weather.rain
-            self.snow = self.weather.weather.snow
+            try:
+                self.sunrise_time = self.weather.weather.sunrise_time()
+                self.sunset_time = self.weather.weather.sunset_time()
+                self.cloud_percent = self.weather.weather.clouds
+            except (AttributeError, TypeError):
+                # Keep existing values if weather update fails
+                pass
+            try:
+                self.rain = self.weather.weather.rain
+            except (AttributeError, KeyError):
+                self.rain = None
+            try:
+                self.snow = self.weather.weather.snow
+            except (AttributeError, KeyError):
+                self.snow = None
             if(self.settings.show_photos):
                 self._load_background()
             else:
@@ -188,7 +221,8 @@ class PyGameClock:
                 self.weather_queries[self.clock_face.local_time.tm_sec] = 1
                 try:
                     self.weather.get_current_weather()
-                except:
+                except Exception as e:
+                    print(f"Weather API error: {e}")
                     pass
                 self._choose_background()
         
@@ -282,20 +316,24 @@ class PyGameClock:
         # than 4 mm per hour, but less than 8 mm per hour. Very heavy rain: 
         # Greater than 8 mm per hour.
         spacing = 0
-        if (self.rain):
-            if (float(self.rain['1h']) < 0.5):
+        if (self.rain and '1h' in self.rain):
+            try:
+                rain_amount = float(self.rain['1h'])
+            except (ValueError, TypeError):
+                return 0
+            if (rain_amount < 0.5):
                 # slight rain
                 spacing = 2
                 pass
-            elif (float(self.rain['1h']) >= 0.5 and float(self.rain['1h']) < 4):
+            elif (rain_amount >= 0.5 and rain_amount < 4):
                 # moderate rain
                 spacing = 1.5
                 pass
-            elif (float(self.rain['1h']) >= 4 and float(self.rain['1h']) < 8):
+            elif (rain_amount >= 4 and rain_amount < 8):
                 # heavy rain
                 spacing = 1
                 pass
-            elif (float(self.rain['1h']) >= 8):
+            elif (rain_amount >= 8):
                 # very heavy rain
                 spacing = 0.5
                 pass
